@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+
+{% block body %}
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form action="{% url 'order' userID %}" method="post" class="animate__animated animate__bounceInDown">
+          {% csrf_token %}
+          <h3 class="mb-3">Please fill the order</h3>
+          <div class="mb-3">
+            <label for="party_name" class="form-label">Party name:</label>
+            <input type="text" name="party_name" id="party_name" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description:</label>
+            <textarea name="description" cols="30" rows="10" id="description" class="form-control"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock body %}

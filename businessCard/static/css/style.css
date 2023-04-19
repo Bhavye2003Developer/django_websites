@@ -1,0 +1,71 @@
+body{
+  overflow: hidden;
+}
+.card {
+  position: absolute;
+  
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50%; /* added margin top */
+}
+
+.card-info {
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #333; /* Changed to a darker color */
+  padding: 10px;
+  box-sizing: border-box;
+  margin-top: auto; /* added to remove the gap */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-nav li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.card-nav a {
+  display: inline-block;
+  padding: 15px; /* Increased the padding */
+  color: #fff; /* Changed to a lighter color */
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+  font-size: 1.2rem; /* Increased the font size */
+}
+
+.card-nav a:hover {
+  background-color: #fff; /* Changed to a lighter color */
+  color: #333; /* Changed to a darker color */
+  border-color: #333;
+}
+

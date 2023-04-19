@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Digital Business Card</title>
+    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+
+    <style>
+        {% block css %}
+        {% endblock css %}
+    </style>
+
+  </head>
+  <body>
+    <div class="card">
+      <div class="card-header">Swastik Computers</div>
+      <div class="card-body">
+        {% comment %} <img src="https://via.placeholder.com/150" alt="Profile Picture" />
+        <h1>Bhavye</h1>
+        <h2>Graphic Designer</h2>
+        <p>
+            I am a graphic designer
+        </p> {% endcomment %}
+
+        {% block body %}
+
+        {% endblock body %}
+
+        {% comment %} <div class="social-links">
+          <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+        </div> {% endcomment %}
+      </div>
+      <div class="card-footer">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Gallery</a>
+      </div>
+    </div>
+    
+  </body>
+</html>

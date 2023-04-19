@@ -1,0 +1,48 @@
+{% extends 'index.html' %} {% block body %}
+
+{% load static %}
+
+<center>
+    <div class="container">
+
+        <article>
+            <header>
+                <h1 class="headline">{{user.title}}</h1>
+                <div class="byline">
+                    <address class="author">By <a href="{% url 'blogApp:userName' user.author %}">{{user.author}}</a></address>
+                    on <time pubdate datetime="2011-08-28" title="August 28th, 2011">{{user.date}}</time>
+                </div>
+            </header>
+
+            <br><br>
+
+            <div class="article-content">
+                <p>{{user.content}}</p>
+            </div>
+            <br><br>
+        </article>
+
+        {% if request.user.is_authenticated %}
+
+        <h3>VOTES :&nbsp;
+            <a href="{% url 'blogApp:increase' user.id %}">
+                <img src="{% static 'images/blogApp/add.png' %}" alt="" width="20px" name="increase">
+            </a>
+            &nbsp;
+            {{user.votes}}
+            &nbsp;
+            <a href="{% url 'blogApp:decrease' user.id %}">
+                <img src="{% static 'images/blogApp/subtract.png' %}" alt="" width="20px" name="decrease">
+            </a>
+        </h3>
+
+        {% else %}
+
+        <h3>VOTES : {{user.votes}}</h3>
+
+        {% endif %}
+    </div>
+
+</center>
+
+{% endblock body %}

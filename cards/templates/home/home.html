@@ -1,0 +1,128 @@
+{% extends 'home/index.html' %}
+
+{% load static %}
+
+{% block css %}
+
+#menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#menu li {
+  display: inline-block;
+  margin-right: 50px;
+}
+
+.box {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.box img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease-out;
+}
+
+.box:hover img {
+  transform: scale(1.1);
+}
+
+.fade-in {
+  animation-name: fade-in;
+  animation-duration: 2s;
+  animation-timing-function: ease-out;
+  animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#menu a {
+  display: block;
+  position: relative;
+}
+
+#menu img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(50%, -50%);
+  opacity: 0.7;
+  transition: opacity 0.5s ease-out;
+}
+
+#menu img:hover {
+  opacity: 1;
+}
+
+.address {
+  margin-top: 20px;
+  font-style: italic;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+.fade-in-bottom {
+  animation-name: fade-in-bottom;
+  animation-duration: 2s;
+  animation-timing-function: ease-out;
+  animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fade-in-bottom {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+{% endblock css %}
+
+{% block body %}
+
+<center>
+    <div class="box fade-in">
+        <img src="https://res.cloudinary.com/demo/image/upload/c_scale,w_200/lady.jpg" alt="No image" />
+    </div><br />
+    <h3>Raj Kumar Jain</h3>
+    <h5>Graphic designer</h5>
+    <br /><br />
+    <ul id="menu">
+        <li>
+            <a href="#"><img src="{% static 'images/Facebook-logo.png' %}" alt=""
+                    style="border-radius: 10%; width: 30px; height: 30px" /></a>
+        </li>
+        <li>
+            <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt=""
+                    style="border-radius: 10%; width: 30px; height: 30px" /></a>
+        </li>
+        <li>
+            <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt=""
+                    style="border-radius: 10%; width: 30px; height: 30px" /></a>
+        </li>
+    </ul>
+    <br /><br />
+    <address class="address fade-in-bottom">238/9 Punja Sharif, Kashmere Gate, New delhi-110006</address>
+</center>
+
+{% endblock body %}

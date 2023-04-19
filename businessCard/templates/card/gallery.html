@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+
+{% block body %}
+<div class="container">
+  <h3 class="text-center mb-5">Works by {{username}}</h3>
+  <div class="image-wrapper">
+    <marquee behavior="scroll" direction="right" scrollamount="10" loop="infinite">
+      {% for image in imageArray %}
+        <img src="{{image.url}}" alt="" width="200px" height="200px" class="rounded mx-3">
+      {% endfor %}
+    </marquee>
+  </div>
+</div>
+{% endblock body %}

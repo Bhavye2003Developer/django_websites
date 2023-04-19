@@ -1,0 +1,21 @@
+{% extends 'index.html' %} {% block body %}
+
+<div class="container" style="width: 900px">
+  {% for blog in allBlogs %}
+  <div class="card">
+    <div class="card-header">
+      <i>By {{blog.author}}<br />On {{blog.date}}</i>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{blog.title}}</h5>
+      <p class="card-text">{{blog.content | truncatechars:50}}</p>
+      <a href="{% url 'blogApp:detail' blog.id %}" class="btn btn-primary"
+        >Read more</a
+      >
+    </div>
+  </div>
+  <br />
+  {% endfor %}
+</div>
+
+{% endblock body %}
