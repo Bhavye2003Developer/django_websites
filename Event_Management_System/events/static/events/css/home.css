@@ -1,0 +1,135 @@
+/* Reset some default styles for consistency */
+
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.main-nav {
+    float: right;
+}
+
+.main-nav ul {
+    list-style: none;
+}
+
+.main-nav ul li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.main-nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.hero {
+    background-color: #f2f2f2;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.search-form {
+    margin-top: 20px;
+}
+
+.search-form input[type="text"] {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-form button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.featured-events, .upcoming-events {
+    margin: 50px 0;
+}
+
+.featured-events h3, .upcoming-events h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.event-card {
+    display: flex;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.event-card img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.event-info {
+    padding: 10px;
+}
+
+.event-info h4 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.event-info p {
+    margin-bottom: 5px;
+}
+
+.event-info .btn {
+    display: block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 0px 0;
+}
+
+.content {
+    flex: 1;
+}

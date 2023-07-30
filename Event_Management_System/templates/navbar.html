@@ -1,0 +1,19 @@
+<header class="header bg-gray-900 text-white py-3">
+    <div class="container mx-auto px-4">
+        <h1 class="logo text-3xl font-bold">Event Management System</h1>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="/events/" class="text-white">Home</a></li>
+                <li><a href="{% url 'list' %}" class="text-white">Events</a></li>
+                <li><a href="{% url 'create-event' %}" class="text-white">Create Event</a></li>
+                <li><a href="{% url 'profile' %}" class="text-white">My Profile</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}" class="text-white">Logout</a></li>
+                {% else %}
+                <li><a href="{% url 'login_user' %}" class="text-white">Login</a></li>
+                <li><a href="{% url 'register' %}" class="text-white">Register</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</header>

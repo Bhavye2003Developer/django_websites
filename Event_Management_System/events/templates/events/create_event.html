@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event - Event Management System</title>
+    <link rel="stylesheet" href="{% static 'events/css/home.css' %}">
+    <!-- Include the Tailwind CSS file -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        {% include 'navbar.html' %}
+    </header>
+
+    <div class="content">
+        <!-- Create Event Form Section -->
+        <section class="create-event py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-8">Create New Event</h2>
+                <form class="max-w-md mx-auto" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <label for="event_title" class="block font-bold mb-1">Event Title:</label>
+                        <input type="text" id="event_title" name="event_title" placeholder="Event Title"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300">
+                    </div>
+                    <div class="mb-4">
+                        <label for="event_date" class="block font-bold mb-1">Event Date:</label>
+                        <input type="date" id="event_date" name="event_date"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300">
+                    </div>
+                    <div class="mb-4">
+                        <label for="event_location" class="block font-bold mb-1">Event Location:</label>
+                        <input type="text" id="event_location" name="event_location" placeholder="Event Location"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300">
+                    </div>
+                    <div class="mb-4">
+                        <label for="event_description" class="block font-bold mb-1">Event Description:</label>
+                        <textarea id="event_description" name="event_description" rows="5"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label for="event_is_featured" class="block font-bold mb-1">Is Featured:</label>
+                        <select id="event_is_featured" name="event_is_featured"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="eventImage" class="block font-bold mb-1">Event Image:</label>
+                        <input type="file" id="eventImage" name="eventImage" value="eventImage"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300">
+                    </div>
+                    <button type="submit"
+                        class="btn bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Create
+                        Event</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer bg-gray-900 text-white py-4">
+        <div class="container mx-auto px-4" style="display: inline-block; bottom: 0%;">
+            <p>&copy; 2023 Event Management System. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

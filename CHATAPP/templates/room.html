@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+        <link rel="stylesheet" href="{% static 'css/chat.css' %}"> <!-- Add your custom CSS file -->
+        <title>Chat Page</title>
+      </head>
+      <body class="bg-gradient-to-r from-purple-400 to-pink-500">
+        <div class="container mx-auto px-4 py-8">
+          <div class="bg-white rounded-lg shadow-md max-w-lg mx-auto chat-container">
+            <div class="px-6 py-4">
+              <div class="flex items-center justify-between mb-4">
+                <h2 class="text-2xl font-semibold">Chat Room - {{ roomName }}</h2>
+                <div class="text-sm text-gray-600">You are logged in as "{{ user }}"</div>
+              </div>
+              <div class="border rounded-lg border-gray-300 overflow-hidden chat-messages">
+                <!-- Sample chat messages -->
+                {% for message in messages.reverse %}
+                <div class="mb-4">
+                  <div class="font-semibold text-purple-600">{{ message.username }}</div>
+                  <div class="text-gray-800">{{ message.message }}</div>
+                  <div class="text-xs text-gray-500">{{ message.datetime }}</div>
+                </div>
+                {% endfor %}
+                <!-- Add more messages here -->
+              </div>
+              <div class="mt-4">
+                <form id="messageForm" class="flex" method="POST" action="">
+                  {% csrf_token %}
+                  <input type="text" class="flex-1 rounded-lg border border-gray-300 py-2 px-4 focus:outline-none focus:border-blue-500" placeholder="Type your message here..." name="message" id="message">
+                  <button class="ml-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-lg focus:outline-none" type="submit">Send</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+</body>
+</html>

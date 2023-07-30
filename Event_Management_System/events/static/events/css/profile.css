@@ -1,0 +1,43 @@
+/* Add your custom styles for the profile page here */
+
+/* Bar graph styles */
+.bar-graph-container {
+    display: flex;
+    align-items: flex-end;
+    height: 200px;
+    width: 100%;
+    background-color: #f0f0f0;
+}
+
+.bar {
+    width: 0;
+    background-color: #007bff;
+    transition: width 1s ease;
+}
+
+.bar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.bar-label {
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.bar-value {
+    margin-top: 6px;
+}
+
+/* Animation for bar graph */
+@keyframes fillBar {
+    0% {
+        width: 0;
+    }
+}
+
+.animated .bar {
+    animation: fillBar 1s forwards;
+}

@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management System</title>
+    <link rel="stylesheet" href="{% static 'events/css/home.css' %}">
+    <!-- Include the Tailwind CSS file -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+
+        {% include 'navbar.html' %}
+
+    </header>
+
+    <!-- Hero Section -->
+    <div class="content">
+        <section class="hero bg-gray-100 py-16">
+            <div class="container mx-auto px-4">
+                {% if user.is_authenticated %}
+                <h2 class="text-4xl font-bold mb-6">Welcome {{user.username}}, Discover Exciting Events Near You</h2>
+                {% else %}
+                <h2 class="text-4xl font-bold mb-6">Discover Exciting Events Near You</h2>
+                {% endif %}
+                <form class="search-form flex justify-center">
+                    <input type="text" placeholder="Search events..."
+                        class="px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring focus:border-blue-300 w-full md:w-96">
+                    <button type="submit"
+                        class="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Search</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Featured Events Section -->
+        <section class="featured-events bg-white py-16">
+            <div class="container mx-auto px-4">
+                <h3 class="text-3xl font-bold mb-8">Featured Events</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {% for event in featured_events %}
+                    <div class="event-card border border-gray-300 rounded-md overflow-hidden">
+                        {% comment %} <img src="{{ MEDIA_URL }}{{ event.event_image.url }}" alt="No Image" class="w-full h-48 object-cover object-center"> {% endcomment %}
+
+                        {% if event.event_image %}
+                            <img src="{{ MEDIA_URL }}{{ event.event_image.url }}" alt="Event Image" class="w-full h-48 object-cover object-center">
+                        {% else %}
+                            <img src="/media/images/default.jpg" alt="No Image Found" class="w-full h-48 object-cover object-center">
+                        {% endif %}
+
+
+                        <div class="event-info p-4">
+                            <h4 class="text-xl font-bold mb-2">{{event.event_title}}</h4>
+                            <p class="text-gray-600 mb-2">On {{event.event_date}}3</p>
+                            <p class="text-gray-600 mb-2">{{event.event_location}}</p>
+                            <a href="#" class="btn bg-blue-500 text-white px-4 py-2 block rounded-md text-center">View
+                                Details</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <!-- Add more featured events cards here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Events Section -->
+        <section class="upcoming-events bg-gray-100 py-16">
+            <div class="container mx-auto px-4">
+                <h3 class="text-3xl font-bold mb-8">Upcoming Events</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {% for event in upcomming_events %}
+                    <div class="event-card border border-gray-300 rounded-md overflow-hidden">
+
+                        {% if event.event_image %}
+                            <img src="{{ MEDIA_URL }}{{ event.event_image.url }}" alt="Event Image" class="w-full h-48 object-cover object-center">
+                        {% else %}
+                            <img src="/media/images/default.jpg" alt="No Image Found" class="w-full h-48 object-cover object-center">
+                        {% endif %}
+
+                        <div class="event-info p-4">
+                            <h4 class="text-xl font-bold mb-2">{{event.event_title}}</h4>
+                            <p class="text-gray-600 mb-2">On {{event.event_date}}</p>
+                            <p class="text-gray-600 mb-2">{{event.event_location}}</p>
+                            <a href="#" class="btn bg-blue-500 text-white px-4 py-2 block rounded-md text-center">View
+                                Details</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <!-- Add more upcoming events cards here -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer bg-gray-900 text-white py-4">
+        <div class="container mx-auto px-4" style="display: inline-block; bottom: 0%;">
+            <p>&copy; 2023 Event Management System. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

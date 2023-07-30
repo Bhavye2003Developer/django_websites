@@ -1,0 +1,86 @@
+<!-- my_profile.html -->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Event Management System</title>
+    <link rel="stylesheet" href="{% static 'events/css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'events/css/profile.css' %}">
+    <!-- Include the Tailwind CSS file -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header>
+        {% include 'navbar.html' %}
+    </header>
+
+    <div class="content">
+        <!-- My Profile Section -->
+        <section class="my-profile py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-8">My Profile</h2>
+                <div class="profile-info p-4 border border-gray-300 rounded-md">
+                    <div class="flex items-center mb-4">
+                        <div class="profile-image mr-4">
+                            <img src="{% static 'events/images/profile_picture.jpg' %}" alt="Profile Picture"
+                                class="w-24 h-24 rounded-full object-cover">
+                        </div>
+                        <div class="profile-details">
+                            <p class="text-2xl font-bold">John Doe</p>
+                            <p class="text-gray-600">Email: john.doe@example.com</p>
+                            <p class="text-gray-600">Location: New York, USA</p>
+                            <p class="text-gray-600">Phone: +1 123-456-7890</p>
+                        </div>
+                    </div>
+                    <div class="hackathons-participation">
+                        <p class="text-xl font-bold mb-2">Hackathons Participation</p>
+                        <div class="bar-graph mt-4">
+                            <div class="bar-item">
+                                <div class="bar-label">2021</div>
+                                <div class="bar">
+                                    <div class="bar-fill bg-blue-500" style="width: 80%;"></div>
+                                </div>
+                                <div class="bar-value">80%</div>
+                            </div>
+                            <div class="bar-item">
+                                <div class="bar-label">2022</div>
+                                <div class="bar">
+                                    <div class="bar-fill bg-green-500" style="width: 65%;"></div>
+                                </div>
+                                <div class="bar-value">65%</div>
+                            </div>
+                            <div class="bar-item">
+                                <div class="bar-label">2023</div>
+                                <div class="bar">
+                                    <div class="bar-fill bg-yellow-500" style="width: 90%;"></div>
+                                </div>
+                                <div class="bar-value">90%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // JavaScript for Bar Graph Animation
+        const bars = document.querySelectorAll('.bar-fill');
+        bars.forEach((bar) => {
+            const width = bar.style.width;
+            bar.style.width = '0';
+            setTimeout(() => {
+                bar.style.width = width;
+            }, 1000); // Adjust the animation speed here (1 second in this case)
+        });
+    </script>
+</body>
+
+</html>
