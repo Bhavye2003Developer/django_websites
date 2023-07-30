@@ -1,0 +1,45 @@
+{% extends 'shop/html/basic.html' %}
+
+{% block title %} Contact Us {% endblock %}
+
+{% block body %}
+
+<center style="margin-top: 3%;">
+    <div class="container">
+        <h2>Please Enter your Details</h2><br><br>
+
+        <form action="/shop/thankYou/" method="post">
+            {% csrf_token %}
+            <table cellpadding="10px">
+                <tr>
+                    <td>
+                        <label for="userName" class="form-label">Name</label>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" id="userName"  style="width: 90%;" name="userName">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    </td>
+                    <td>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style="width: 150%;" name="userEmail">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="customerQuery">Your Query</label>
+                    </td>
+                    <td>
+                        <textarea class="form-control" placeholder="Please state your query" id="customerQuery" style="height: 185px; width: 200%;" name="UserQuery"></textarea>
+                    </td>
+                </tr>
+            </table>
+            <br><br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
+</center>
+
+{% endblock %}

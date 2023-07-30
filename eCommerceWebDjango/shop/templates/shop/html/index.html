@@ -1,0 +1,23 @@
+{% extends 'shop/html/basic.html' %}
+
+{% block title %} Shop Home Page {% endblock %}
+
+{% block body %}
+    <h3 style="margin: 5%;">
+      {% for item in data %}
+          <table cellpadding="10pixels">
+            <tr>
+              <td>
+                Product Name : {{item.product_name}} <br>
+                Product Description : {{item.desc}} <br>
+                Publish Date : {{item.publish_date}} <br>
+              </td>
+              <td>
+                <img src="/media/{{item.image}}" alt="Image Not found" height="140px" width="200px">
+              </td>
+            </tr>
+          </table>
+          <br><br><br>
+      {% endfor %}
+    </h3>
+{% endblock %}
