@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<br><br><br>
+
+<div class="container">
+    <h2>All Posts</h2>
+    <br>
+    {% for post in allPosts %}
+
+    <div class="card">
+        <div class="card-body text-primary">
+            <div class="card-header">
+                {{post.title}}
+            </div>
+        </div>
+        <div class="card-body">
+        <h5 class="card-title" style="font-family:italic; font-size:20px">By {{post.author}}</h5>
+        <p class="card-text">{{post.content|slice:":500"}}...</p>
+        <a href="/blog/{{post.sno}}" class="btn btn-primary">Continue reading</a>
+        </div>
+    </div>
+    <br>
+    {% endfor %}
+</div>
+
+{% endblock body %}

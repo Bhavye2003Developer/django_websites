@@ -1,0 +1,46 @@
+{% extends 'base.html' %} {% block body %}
+
+<br />
+<center>
+  <div class="container">
+    {% for i in post %}
+
+    <h2>{{i.title}}</h2>
+
+    <h5>By : {{i.author}}</h5>
+    <h6>{{i.timestamp}}</h6>
+
+    <div>
+      <p style="text-align: left">{{i.content}}</p>
+    </div>
+
+    {% endfor %}
+  </div>
+</center>
+
+<br /><br />
+
+{% if user.is_authenticated %}
+<div class="container">
+  <form action="/blog/postComment/{{UserID}}" method="POST">
+    {% csrf_token %}
+    <label for="UserComment">Please comment</label>
+    <input type="text" name="UserComment" id="UserComment" />
+    <button type="submit">Submit</button>
+  </form>
+</div>
+
+<br><br>
+{% endif %}
+
+<div class="container">
+  {% for comment in comments %}
+
+  <h5>{{comment.name}} -> {{comment.timestamp}}</h5>
+  <p>{{comment.postComment}}</p>
+
+  <br />
+  {% endfor %}
+</div>
+
+{% endblock body %}

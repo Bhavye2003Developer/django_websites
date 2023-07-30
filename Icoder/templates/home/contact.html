@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% block body %}
+
+<h1 style="text-align: center">Contact ICoder Admin</h1>
+<div class="container">
+  <form action="/contact" method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        aria-describedby="name"
+        name="name"
+      />
+
+      <label for="email" class="form-label">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        aria-describedby="emailHelp"
+        name="email"
+      />
+
+      <label for="phone" class="form-label">Phone No.</label>
+      <input type="phone" class="form-control" id="phone" name="phone" />
+      <br />
+
+      <div class="form-floating">
+        <label for="description" class="form-label">How may we help you</label
+        ><br /><br />
+        <textarea
+          class="form-control"
+          placeholder="Please write the description"
+          id="description"
+          style="height: 259px"
+          name="description"
+        ></textarea>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+{% endblock body %}

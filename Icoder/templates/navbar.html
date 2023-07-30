@@ -1,0 +1,234 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">ICoder</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link {% block homeactive %} {% endblock homeactive %}"
+            href="/"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link {% block blogactive %} {% endblock blogactive %}"
+            href="/blog/"
+            >Blog</a
+          >
+        </li>
+        <li
+          class="nav-item {% block contactactive %} {% endblock contactactive %}"
+        >
+          <a class="nav-link" href="/contact">Contact</a>
+        </li>
+        <li class="nav-item {% block aboutactive %} {% endblock aboutactive %}">
+          <a class="nav-link" href="/about">About Us</a>
+        </li>
+        <li class="nav-item">
+          {% if user.is_authenticated %}
+          <li>{{request.user}}</li>
+          <li>
+          <form action="/logout" method="POST">
+            {% csrf_token %}
+            <button
+            class="btn btn-success"
+            data-bs-whatever="@mdo"
+            type="submit"
+          >
+            Logout
+          </button>
+          </form>
+          </li>
+          {% else %}
+          {% csrf_token %}
+          <button
+            class="btn btn-success"
+            data-bs-toggle="modal"
+            data-bs-target="#LoginModal"
+            data-bs-whatever="@mdo"
+            type="submit"
+          >
+            Login
+          </button>
+        </li>
+        <li class="nav-item">
+          <button
+            class="btn btn-success mx-2"
+            data-bs-toggle="modal"
+            data-bs-target="#signupModal"
+            data-bs-whatever="@mdo"
+            type="submit"
+          >
+            SignUp
+          </button>
+          {% endif %}
+        </li>
+      </ul>
+      <form class="d-flex" role="search" action="/search" method="post">
+        {% csrf_token %}
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+          name="search"
+        />
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+
+    <div
+      class="modal fade"
+      id="signupModal"
+      tabindex="-1"
+      aria-labelledby="signupModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="signupModalLabel">SignUp Here</h1>
+            <button
+              type="submit"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form action="/signup" method="POST">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label for="name" class="col-form-label">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  placeholder="Your Name"
+                  name="name"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="col-form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="name@example.com"
+                  name="email"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label"
+                  >Password</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  placeholder="Enter the password"
+                  name="loginpassword"
+                  {% comment %} id="loginpassword" {% endcomment %}
+                />
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  class="btn btn-success"
+                  type="submit"
+                  data-bs-dismiss="modal"
+                >
+                  SignUp
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="LoginModal"
+      tabindex="-1"
+      aria-labelledby="signupModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="LoginModalLabel">Login</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form action="/login" method="POST">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label for="email" class="col-form-label">Email</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="Loginemail"
+                  placeholder="name@example.com"
+                  name="Loginemail"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label"
+                  >Password</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="Loginpassword"
+                  placeholder="Enter the password"
+                  name="Loginpassword"
+                />
+                {% comment %} {{request.path}} {% endcomment %}
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  class="btn btn-success"
+                  type="submit"
+                  data-bs-dismiss="modal"
+                >
+                  Login
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
