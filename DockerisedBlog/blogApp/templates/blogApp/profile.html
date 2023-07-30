@@ -1,0 +1,51 @@
+{% extends './base.html' %}
+{% block style %}
+<style>
+  /* Styles here */
+</style>
+{% endblock style %}
+{% block body %}
+<br /><br />
+<div class="container">
+  {% if request.user.is_authenticated %}
+  <table style="width: 100%;">
+    <tr>
+      <td>
+        <!-- <img src="" alt="Hey"> -->
+        {% if user.userImage %}
+        <img src="{{user.userImage.url}}" alt="Hey" style="width: 200px; height: 200px;" />
+        {% else %}
+        <form action="{% url 'blog-profile' request.user.id %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <input type="file" name="userImage" id="userImage" />
+          <input type="submit" value="Upload" />
+        </form>
+        {% endif %}
+      </td>
+      <td>
+        <h1>Name : {{request.user.username}}</h1>
+        <h2>Email : {{request.user.email}}</h2>
+      </td>
+    </tr>
+  </table>
+  <br><br>
+  <h1>Hey {{request.user.username}}</h1>
+  <h2>Here are your posts</h2>
+  <br /><br />
+  {% for blog in blogs %}
+  <div class="card card-gamified">
+    <h5 class="card-header">{{blog.author}}</h5>
+    <div class="card-body">
+      <h5 class="card-title">{{blog.title}}</h5>
+      <p class="card-text">{{blog.content | truncatechars:130}}...</p>
+      <a href="{% url 'blog-detail' blog.id %}" class="btn btn-primary">Read more</a>
+      <a href="{% url 'blog-delete' blog.id %}" class="btn btn-primary">Delete</a>
+    </div>
+  </div>
+  <br /><br />
+  {% endfor %}
+  {% else %}
+  <h1>You are not logged in.</h1>
+  {% endif %}
+</div>
+{% endblock body %}

@@ -1,0 +1,136 @@
+<style>
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.1);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .pulse-animation {
+    animation: pulse 2s infinite;
+  }
+
+  .rotate-animation {
+    animation: rotate 4s infinite;
+  }
+
+  .navbar {
+    background-color: #e5f2ff;
+  }
+
+  .navbar-brand {
+    color: #007bff;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .navbar-toggler {
+    background-color: #007bff;
+  }
+
+  .navbar-toggler-icon {
+    background-image: url("path/to/toggler-icon.png");
+    width: 30px;
+    height: 30px;
+  }
+
+  .nav-item {
+    margin-left: 10px;
+  }
+
+  .nav-link {
+    color: #007bff;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+
+  .nav-link:hover {
+    color: #ff4500;
+  }
+
+  .nav-link.active {
+    color: #ff4500 !important;
+  }
+
+  .nav-link.active:hover {
+    color: #dc3545 !important;
+  }
+
+  .nav-link-gamified {
+    position: relative;
+    display: inline-block;
+    color: #007bff;
+    font-weight: bold;
+    animation: rotate 4s infinite;
+  }
+
+  .nav-link-gamified:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #007bff;
+    transform: translate(-50%, -50%);
+    animation: pulse 2s infinite;
+  }
+
+  .nav-link-gamified:hover:before {
+    background-color: #ff4500;
+  }
+</style>
+
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'blog-home' %}">Blogs</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'blog-home' %}">Home</a>
+        </li>
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'blog-create' %}">Create</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'blog-logout' %}">Logout</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link-gamified" aria-current="page" href="{% url 'blog-profile' user.id %}">Hi
+            {{user.username}}</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'blog-login' %}">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'blog-register' %}">Register</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

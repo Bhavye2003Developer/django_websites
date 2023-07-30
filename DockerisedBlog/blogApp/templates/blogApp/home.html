@@ -1,0 +1,114 @@
+{% extends './base.html' %}
+
+{% block style %}
+<style>
+  .container {
+    width: 800px;
+  }
+
+  .card {
+    margin-bottom: 30px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    transform: scale(1);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .card:hover {
+    transform: scale(1.03);
+  }
+
+  .card-header {
+    background-color: #ff4500;
+    color: #fff;
+    font-size: 20px;
+    padding: 10px;
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+
+  .card-title {
+    color: #007bff;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .card-text {
+    color: #333;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+
+  .btn-primary:hover {
+    background-color: #dc3545;
+  }
+
+  .card-gamified {
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-gamified:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom right, #ff4500, #007bff);
+    opacity: 0.5;
+    transform: rotate(-45deg) scale(0);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .card-gamified:hover:before {
+    transform: rotate(-45deg) scale(1);
+  }
+
+  .card-gamified:hover .card-header {
+    background-color: #dc3545;
+  }
+
+  .card-gamified:hover .card-title {
+    color: #fff;
+  }
+
+  .card-gamified:hover .btn-primary {
+    background-color: #fff;
+    color: #007bff;
+  }
+</style>
+{% endblock style %}
+
+{% block body %}
+<br><br>
+<div class="container">
+  <h1>All Blogs</h1>
+  {% for blog in blogs %}
+  <div class="card card-gamified">
+    <h5 class="card-header">{{blog.author}}</h5>
+    <div class="card-body">
+      <h5 class="card-title">{{blog.title}}</h5>
+      <p class="card-text">
+        {{blog.content | truncatechars:130}}...
+      </p>
+      <a href="{% url 'blog-detail' blog.id %}" class="btn btn-primary">Read more</a>
+    </div>
+  </div>
+  <br><br>
+  {% endfor %}
+</div>
+{% endblock body %}
